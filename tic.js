@@ -51,7 +51,7 @@ const gameboard = (() => {
    let gameOver = false; 
   let ticBoard = document.querySelector('#ticBoard')
   const board = [, , , , , , , , , ]
-
+  console.log(board[1])
   let currentPlayer = player2;
   let otherPlayer = player1
 
@@ -98,7 +98,11 @@ if (player1.name === '' || player2.name === '') {
             board[2] === otherPlayer.letter && board[4] === otherPlayer.letter && board[6] === otherPlayer.letter 
             ) {
             winBox.textContent = `${otherPlayer.name} wins!`;
-            gameOver = true;}
+            gameOver = true;} else if (board[0] !== undefined && board[1] !== undefined && board[2] !== undefined 
+              && board[3] !== undefined && board[4] !== undefined && board[5] !== undefined && board[6] !== undefined && board[7] !== undefined 
+              &&board[8] !== undefined) {
+                winBox.textContent = 'Draw'
+            }
           }
           }}
           }) //box EventListener stops here
