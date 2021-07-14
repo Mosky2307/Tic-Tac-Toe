@@ -6,8 +6,8 @@ const player = (name, letter) => {
     
   
     
-   const player1 = player('jim', 'X');
-   const player2 = player('bob', 'O');
+   const player1 = player('Jim', 'X');
+   const player2 = player('Bob', 'O');
    
    
 
@@ -19,14 +19,15 @@ const gameboard = (() => {
   const board = [, , , , , , , , , ]
 
   let currentPlayer = player1;
+  let otherPlayer = player2
 
     //This function switches player
     const switchPlayer = () => {
-    if (currentPlayer.letter === player1.letter)
-    {currentPlayer = player2} else {
-      currentPlayer = player1
+    if (currentPlayer === player1)
+    {currentPlayer = player2; otherPlayer = player1} else {
+      currentPlayer = player1; otherPlayer = player2;
     }
-    console.log(board)
+    
   };
 
     //This loop creates the board pieces
@@ -36,15 +37,30 @@ const gameboard = (() => {
 
         //This is what the boxes do when clicked
         box.addEventListener('click', () => {
+        
          if (board[i] !== undefined) {} else {
           board[i] = currentPlayer.letter;
           switchPlayer()
-          box.textContent = `${board[i]}`}
-          })
+          box.textContent = `${board[i]}`
+          if (board[0] === otherPlayer.letter && board[1] === otherPlayer.letter && board[2] === otherPlayer.letter ||
+            board[3] === otherPlayer.letter && board[4] === otherPlayer.letter && board[5] === otherPlayer.letter ||
+            board[6] === otherPlayer.letter && board[7] === otherPlayer.letter && board[8] === otherPlayer.letter ||
+            board[0] === otherPlayer.letter && board[3] === otherPlayer.letter && board[6] === otherPlayer.letter ||
+            board[1] === otherPlayer.letter && board[4] === otherPlayer.letter && board[7] === otherPlayer.letter ||
+            board[2] === otherPlayer.letter && board[5] === otherPlayer.letter && board[8] === otherPlayer.letter ||
+            board[0] === otherPlayer.letter && board[4] === otherPlayer.letter && board[8] === otherPlayer.letter ||
+            board[2] === otherPlayer.letter && board[4] === otherPlayer.letter && board[6] === otherPlayer.letter 
+            ) {
+            alert(`${otherPlayer.name} wins!`)
+          }
+          }
+          }) //box EventListener stops here
+          
         
           ticBoard.appendChild(box);
-          console.log(board)
+          
 }
+
 })();
 
  
