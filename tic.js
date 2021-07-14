@@ -3,6 +3,8 @@ const buttonOrNameO = document.querySelector('#buttonOrNameO');
 const xButton = document.querySelector('#xButton');
 const oButton = document.querySelector('#oButton');
 const winBox = document.querySelector('#winBox');
+const playAgain = document.createElement('button')
+playAgain.textContent = 'Play Again?'
 
 
 
@@ -15,12 +17,19 @@ const player = (name, letter) => {
     
   
     
-   
+
    
 
 
 
 const gameboard = (() => {
+
+  //this is what the play again button does
+  playAgain.addEventListener('click', () =>{ 
+    boardCreate();
+    winBox.textContent = `${currentPlayer.name}'s turn`
+  })
+
   let player1 = player('', '');
    let player2 = player('', '');
 
@@ -48,10 +57,10 @@ const gameboard = (() => {
 
 
 
-   let gameOver = false; 
+   
   let ticBoard = document.querySelector('#ticBoard')
-  const board = [, , , , , , , , , ]
-  console.log(board[1])
+  
+ 
   let currentPlayer = player2;
   let otherPlayer = player1
 
@@ -66,12 +75,22 @@ const gameboard = (() => {
 
 
 
-    //This loop creates the board pieces
+    
+    boardCreate = () => {
+      const board = [, , , , , , , , , ]
+      let gameOver = false; 
+console.log(board)
+console.log(currentPlayer.name)
+      //This loop creates the board pieces
     for (let i=0; i<9; i++) {
         let box = document.createElement('div');
         box.classList.add('ticBoxDiv');
+        playAgain.addEventListener('click', () =>{ 
+          ticBoard.removeChild(box);
+        })
         if (i % 2 === 0) {
           box.style.backgroundColor = 'lightgreen';
+         
         }
 
         //This is what the boxes do when clicked
@@ -98,10 +117,12 @@ if (player1.name === '' || player2.name === '') {
             board[2] === otherPlayer.letter && board[4] === otherPlayer.letter && board[6] === otherPlayer.letter 
             ) {
             winBox.textContent = `${otherPlayer.name} wins!`;
+            winBox.appendChild(playAgain);
             gameOver = true;} else if (board[0] !== undefined && board[1] !== undefined && board[2] !== undefined 
               && board[3] !== undefined && board[4] !== undefined && board[5] !== undefined && board[6] !== undefined && board[7] !== undefined 
               &&board[8] !== undefined) {
-                winBox.textContent = 'Draw'
+                winBox.textContent = 'Draw';
+                winBox.appendChild(playAgain)
             }
           }
           }}
@@ -109,9 +130,18 @@ if (player1.name === '' || player2.name === '') {
           
         
           ticBoard.appendChild(box);
-          
+        }
 }
-
+boardCreate()
 })();
+
+
+
+
+
+
+
+
+
 
  
