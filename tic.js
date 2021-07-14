@@ -70,6 +70,9 @@ const gameboard = (() => {
     for (let i=0; i<9; i++) {
         let box = document.createElement('div');
         box.classList.add('ticBoxDiv');
+        if (i % 2 === 0) {
+          box.style.backgroundColor = 'lightgreen';
+        }
 
         //This is what the boxes do when clicked
         box.addEventListener('click', () => {
