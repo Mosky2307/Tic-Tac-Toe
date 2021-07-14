@@ -14,7 +14,7 @@ const player = (name, letter) => {
 
 
 const gameboard = (() => {
-    
+   let gameOver = false; 
   let ticBoard = document.querySelector('#ticBoard')
   const board = [, , , , , , , , , ]
 
@@ -37,7 +37,7 @@ const gameboard = (() => {
 
         //This is what the boxes do when clicked
         box.addEventListener('click', () => {
-        
+        if (gameOver === false) {
          if (board[i] !== undefined) {} else {
           board[i] = currentPlayer.letter;
           switchPlayer()
@@ -51,7 +51,8 @@ const gameboard = (() => {
             board[0] === otherPlayer.letter && board[4] === otherPlayer.letter && board[8] === otherPlayer.letter ||
             board[2] === otherPlayer.letter && board[4] === otherPlayer.letter && board[6] === otherPlayer.letter 
             ) {
-            alert(`${otherPlayer.name} wins!`)
+            alert(`${otherPlayer.name} wins!`);
+            gameOver = true;}
           }
           }
           }) //box EventListener stops here
